@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.pollyannawu.gogolook.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_activity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".MainActivity">
+        <android.widget.SearchView
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/standard"
+            android:layout_marginHorizontal="@dimen/standard"
+            app:searchIcon="@drawable/search"
+            android:iconifiedByDefault="false"
+            android:queryBackground="@android:color/transparent"
+            android:textSize="@dimen/standard_text_size"
+            android:background="@drawable/search_bar_background"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/swap_layout_btn"
+
+            />
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/search_bar"
+            app:layout_constraintEnd_toEndOf="@id/search_bar"
+            app:layout_constraintTop_toBottomOf="@id/search_bar"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            android:layout_marginTop="@dimen/standard_half"
+            app:cardCornerRadius="@dimen/standard"
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/search_history_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:translationZ="@dimen/standard_one_forth"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="vertical"
+                />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/search_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/search_bar"
+            android:text="Search Result"
+            android:textStyle="bold"
+            android:textSize="@dimen/standard_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="@dimen/standard"
+            />
+        <ImageView
+            android:id="@+id/linear_layout_icon"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toStartOf="@id/swap_layout_btn"
+            app:layout_constraintTop_toTopOf="@id/search_result"
+            app:layout_constraintBottom_toBottomOf="@id/search_result"
+            app:layout_constraintWidth_percent="0.08"
+            android:src="@drawable/horizontal_layout_icon"
+            app:layout_constraintDimensionRatio="1"
+            />
+        <ImageView
+            android:id="@+id/grid_layout_icon"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/search_result"
+            app:layout_constraintBottom_toBottomOf="@id/search_result"
+            app:layout_constraintWidth_percent="0.08"
+            android:src="@drawable/grid_layout_icon"
+            app:layout_constraintDimensionRatio="1"
+            android:layout_margin="@dimen/standard"
+            />
+
+        <Switch
+            android:id="@+id/swap_layout_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toStartOf="@id/grid_layout_icon"
+            app:layout_constraintTop_toTopOf="@id/search_result"
+            app:layout_constraintBottom_toBottomOf="@id/search_result"
+            app:layout_constraintDimensionRatio="1"
+            android:padding="@dimen/standard_half"
+            />
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/standard"
+            app:layout_constraintTop_toBottomOf="@id/search_result"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <include layout="@layout/row_image_shimmer" />
+
+            <include layout="@layout/row_image_shimmer" />
+
+            <include layout="@layout/row_image_shimmer" />
+            </LinearLayout>
+
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/standard"
+            app:layout_constraintTop_toBottomOf="@id/search_result"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/image_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/error_hint_lottie"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_result"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintDimensionRatio="1"
+            app:lottie_rawRes="@raw/empty_lottie"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="true"
+            />
+
+
+        <TextView
+            android:id="@+id/error_hint_text"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/standard"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/error_hint_lottie"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
