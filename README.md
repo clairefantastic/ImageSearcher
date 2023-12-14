@@ -10,8 +10,10 @@ remotely via Firebase. Users can also input words to search for their
 preferred images. The app records users' search history using the
 SearchRecentSuggestionsProvider. Additionally, users can switch between
 linear and grid layouts by toggling a switch button.
-![img_1](https://github.com/clairefantastic/ImageSearcher/assets/77667003/8f29be7d-af0f-47d9-83e0-53a9b7f980cd)
-![img_2](https://github.com/clairefantastic/ImageSearcher/assets/77667003/577cec50-0e1e-4211-b33c-733778f1716c)
+<p align="center">
+  <img src="https://github.com/clairefantastic/ImageSearcher/assets/77667003/8f29be7d-af0f-47d9-83e0-53a9b7f980cd" width="48%" />
+  <img src="https://github.com/clairefantastic/ImageSearcher/assets/77667003/577cec50-0e1e-4211-b33c-733778f1716c" width="48%" /> 
+</p>
 
 ## Skills
 * Kotlin
